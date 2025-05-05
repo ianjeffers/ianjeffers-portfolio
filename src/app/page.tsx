@@ -1,102 +1,183 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+
+export default function Portfolio() {
+  const sections = ['skills', 'experience', 'projects', 'education'];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="scroll-smooth bg-gray-50 min-h-screen font-sans text-gray-800">
+      <nav className="sticky top-0 bg-white shadow-sm z-10">
+        <ul className="max-w-3xl mx-auto flex justify-center space-x-6 py-4">
+          {sections.map((sec) => (
+            <li key={sec}>
+              <a
+                href={`#${sec}`}
+                className="text-gray-600 hover:text-gray-900 px-2 py-1 rounded focus:outline-none focus:ring"
+              >
+                {sec.charAt(0).toUpperCase() + sec.slice(1)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      <header className="max-w-3xl mx-auto p-6 text-center">
+        <h1 className="text-5xl font-extrabold mb-2">Ian Jeffers</h1>
+        <p className="text-sm text-gray-600">
+          <a href="mailto:IanJeffers99@gmail.com" className="underline">
+            IanJeffers99@gmail.com
+          </a>{' '}
+          ·{' '}
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://www.linkedin.com/in/ian-jeffers-847588193/"
             target="_blank"
             rel="noopener noreferrer"
+            className="underline"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            LinkedIn
+          </a>{' '}
+          ·{' '}
+          <a href="https://github.com/ianjeffers" className="underline" target="_blank" rel="noopener noreferrer">
+            GitHub
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        </p>
+      </header>
+
+      <main className="max-w-3xl mx-auto p-6 grid gap-8">
+        <section id="skills" aria-labelledby="skills-heading">
+          <Card>
+            <CardContent>
+              <h2 id="skills-heading" className="text-2xl font-semibold mb-4">
+                Skills
+              </h2>
+              <ul className="flex flex-wrap gap-2 text-sm">
+                {[
+                  'Python', 'Java', 'JavaScript', 'TypeScript', 'SQL', 'GraphQL', 'Spring', 'Node.js/Express',
+                  'Docker', 'Kubernetes', 'Redis', 'Prometheus', 'AWS', 'Azure', 'React', 'Maven', 'Kafka',
+                  'Jest/Mocha', 'Mockito', 'JUnit', 'CI/CD', 'Helm', 'Terraform'
+                ].map((skill) => (
+                  <li key={skill} className="px-3 py-1 bg-white rounded-full shadow-sm">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section id="experience" aria-labelledby="experience-heading">
+          <Card>
+            <CardContent>
+              <h2 id="experience-heading" className="text-2xl font-semibold mb-4">
+                Experience
+              </h2>
+              {[
+                {
+                  title: 'Senior Software Engineer',
+                  company: 'Walmart Global Tech',
+                  location: 'San Jose, CA',
+                  date: 'Aug 2023 – Present',
+                  points: [
+                    'Led 6 engineers to build Spark Driver identity verification systems for 1.6M+ active drivers',
+                    'Scaled backend infra supporting 1.1+ deliveries/sec across millions of annual orders',
+                    'Saved $10K/mo by modernizing legacy infrastructure and reducing incidents 40% YoY',
+                    'Managed deployments & monitoring with internal IaC tooling (Kitt) on Cloud Native Platform',
+                    'Replaced Azure Media Services, driving $4M/yr in revenue by eliminating third-party costs'
+                  ]
+                },
+                {
+                  title: 'Software Development Engineer Intern',
+                  company: 'Amazon Web Services',
+                  location: 'Arlington, VA',
+                  date: 'Jun 2022 – Sep 2022',
+                  points: [
+                    'Designed a build shadowing service handling 100K+ daily builds to enhance migration reliability',
+                    'Built CI/CD pipelines and CloudWatch monitoring, boosting system reliability and dev velocity',
+                    'Contributed to cloud-native tooling adoption across the Builder Tools organization'
+                  ]
+                },
+                {
+                  title: 'Lead Software Engineer Intern',
+                  company: 'PairAnything',
+                  location: 'San Diego, CA',
+                  date: 'Oct 2021 – Apr 2022',
+                  points: [
+                    'Led intern team in building backend features with Node.js/Express and managed agile sprints',
+                    'Developed Yelp-based pairing recommendations via scraping and API integration',
+                    'Enhanced API reliability by patching auth vulnerabilities and collaborating with global teams'
+                  ]
+                },
+                {
+                  title: 'Software Engineering Intern',
+                  company: 'ObjectSecurity',
+                  location: 'Remote',
+                  date: 'Internship Date',
+                  points: [
+                    'Implemented offline speech-to-text transcription for sensitive meeting summaries',
+                    'Compared transcription accuracy using ML metrics and multiple engine evaluations',
+                    'Built a Bootstrap frontend for user interaction and presentation of results'
+                  ]
+                }
+              ].map((exp) => (
+                <article key={exp.title} className="mb-6">
+                  <h3 className="text-xl font-bold">{exp.title}</h3>
+                  <p className="text-sm italic mb-2">
+                    {exp.company} &middot; {exp.location} &middot; {exp.date}
+                  </p>
+                  <ul className="list-disc list-inside space-y-1">
+                    {exp.points.map((pt, idx) => (
+                      <li key={idx}>{pt}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </CardContent>
+          </Card>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-heading">
+          <Card>
+            <CardContent>
+              <h2 id="projects-heading" className="text-2xl font-semibold mb-4">
+                Projects
+              </h2>
+              <ul className="list-disc list-inside space-y-2">
+                <li>
+                  <strong>HealthMS</strong> – MHacks 15 "Best Medical Hack"<br />
+                  NLP-powered health journaling for MS symptom tracking (Flask, Python, MongoDB, Azure, React)
+                </li>
+                <li>
+                  <strong>Project Nebula</strong><br />
+                  Distributed, gig-based E-Waste collection platform with environmental impact tracking
+                </li>
+                <li>
+                  <strong>GitHub Contexts Plugin</strong><br />
+                  ChatGPT plugin for navigable GitHub repo search and context-aware code assistance
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section id="education" aria-labelledby="education-heading">
+          <Card>
+            <CardContent>
+              <h2 id="education-heading" className="text-2xl font-semibold mb-4">
+                Education
+              </h2>
+              <p className="text-lg font-medium">University of California, San Diego</p>
+              <p className="text-sm italic">
+                B.S. Cognitive Science, Specialization in Machine Learning & Neural Computation &middot; Mar 2023
+              </p>
+            </CardContent>
+          </Card>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="text-center text-sm text-gray-500 py-6">
+        <p>&copy; {new Date().getFullYear()} Ian Jeffers</p>
       </footer>
     </div>
   );
